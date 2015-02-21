@@ -14,7 +14,8 @@ module.exports = {
     return stylesheetTree;
   }
 
-  // included: function(app) {
-  //   app.import('app/styles/app.scss');
-  // },
+  included: function(app) {
+    // app.import('app/styles/app.scss');
+    app.import(app.bowerDirectory + '/spin.js/spin.js');
+  },
 };
