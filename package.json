@@ -1,6 +1,6 @@
 {
   "name": "ember-spin-button",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "A button with an animated spinner as an Ember CLI addon",
   "directories": {
     "doc": "doc",
