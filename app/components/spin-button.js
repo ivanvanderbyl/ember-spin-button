@@ -46,15 +46,17 @@ function createSpinner( button ) {
 
 export default Ember.Component.extend({
   tagName: 'button',
+  type: 'submit',
   inFlight: false,
   color: 'blue',
   buttonStyle: 'expand-right',
 
-  defaultTimout: 2E3,
-  startDelay: 150,
+  defaultTimout: 10E3,
+  startDelay: 100,
 
   attributeBindings: [
     'disabled',
+    'type',
     'color:data-color',
     'buttonStyle:data-style'],
   classNameBindings: ['inFlight:in-flight:ready', ':spin-button'],

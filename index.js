@@ -5,10 +5,9 @@ module.exports = {
   name: 'ember-spin-button',
 
   treeForStyles: function() {
-    var stylesheetPath = path.resolve(__dirname, 'vendor');
-    console.log(stylesheetPath)
+    var stylesheetPath = path.resolve(__dirname, 'addon', 'spin-button');
     var stylesheetTree = this.pickFiles(this.treeGenerator(stylesheetPath), {
-      srcDir: '/spin-button-styles/',
+      srcDir: '/styles',
       destDir: '/app/styles'
     });
     return stylesheetTree;
