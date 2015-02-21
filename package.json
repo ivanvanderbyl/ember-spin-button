@@ -1,7 +1,7 @@
 {
   "name": "ember-spin-button",
-  "version": "0.0.0",
-  "description": "The default blueprint for ember-cli addons.",
+  "version": "0.1.0",
+  "description": "A button with an animated spinner as an Ember CLI addon",
   "directories": {
     "doc": "doc",
     "test": "tests"
@@ -11,7 +11,7 @@
     "build": "ember build",
     "test": "ember test"
   },
-  "repository": "",
+  "repository": "https://github.com/ivanvanderbyl/ember-spin-button",
   "engines": {
     "node": ">= 0.10.0"
   },
@@ -36,7 +36,11 @@
     "glob": "^4.0.5"
   },
   "keywords": [
-    "ember-addon"
+    "ember-addon",
+    "spinner",
+    "button",
+    "spinjs",
+    "ladda"
   ],
   "ember-addon": {
     "configPath": "tests/dummy/config"
