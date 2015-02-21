@@ -63,6 +63,7 @@ export default Ember.Component.extend({
 
   click: function() {
     this.set('inFlight', !this.get('inFlight'));
+    this.sendAction('action');
   },
 
   inFlightDidChange: function() {
@@ -91,9 +92,12 @@ export default Ember.Component.extend({
     }
 
     clearTimeout(this._timer);
-    this._timer = setTimeout(function() {
-      this.setEnabled();
-    }.bind(this), this.get('defaultTimout'));
+    var timeout = this.get('defaultTimout');
+    if (timeout > 4) {
+      this._timer = setTimeout(function() {
+        this.setEnabled();
+      }.bind(this), timeout);
+    }
   },
 
   setDisabled: function(){
