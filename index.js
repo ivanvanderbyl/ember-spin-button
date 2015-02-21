@@ -5,7 +5,7 @@ module.exports = {
   name: 'ember-spin-button',
 
   treeForStyles: function() {
-    var stylesheetPath = path.join(this.project.root, 'vendor');
+    var stylesheetPath = path.resolve(__dirname, 'vendor');
     console.log(stylesheetPath)
     var stylesheetTree = this.pickFiles(this.treeGenerator(stylesheetPath), {
       srcDir: '/spin-button-styles/',
