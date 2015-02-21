@@ -2,6 +2,8 @@
 
 Creates a button with a nice spinner to the side. Design based upon [Ladda](http://lab.hakim.se/ladda/), but implemented entirely as an Ember Component.
 
+[Interactive Demo](http://ember-spin-button.tomster.io/)
+
 ## Installation
 
 ```bash

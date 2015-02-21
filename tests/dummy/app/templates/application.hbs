@@ -1,16 +1,25 @@
-<h2 id="title">Ember CLI Spin Button Addon</h2>
+<div class="container">
+  <h2 id="title">Ember CLI Spin Button Addon</h2>
 
-{{outlet}}
+  <div class="controls-container">
+    <div class="control-group" for="button-color-select"><label>Button Color</label> {{view "select" id="button-color-select" content=buttonColors value=selectedColor}}</div>
+    <div class="control-group"><label for="button-style-select">Animation Style</label> {{view "select" id="button-style-select" content=buttonStyles value=selectedAnimation}}</div>
+    <div class="control-group"><label for="button-timeout-range">Timeout ({{timeout}}ms)</label> {{input id="button-timeout-range" type="range" max="10000" step="250" valueBinding=timeout}}</div>
+  </div>
 
-<div><label> Button Color{{view "select" content=buttonColors value=selectedColor}}</label></div>
-<div><label>Animation Style{{view "select" content=buttonStyles value=selectedAnimation}}</label></div>
-<div><label>Timeout ({{timeout}}ms) <div>{{input type="range" max="10000" step="250" valueBinding=timeout}}</div></label></div>
+  <p><label>{{input type="checkbox" checkedBinding="controller.inFlight"}} In-Flight</label></p>
 
+  <div class="demo-container">
+    <p class="demo">Demo</p>
+    {{#spin-button
+      inFlightBinding="controller.inFlight"
+      colorBinding="controller.selectedColor"
+      action="createUser"
+      defaultTimoutBinding="controller.timeout"
+      buttonStyleBinding="controller.selectedAnimation"}}Do Something Expensive{{/spin-button}}
+  </div>
 
-<p><label>{{input type="checkbox" checkedBinding="controller.inFlight"}} In Flight</label></p>
-<p>{{#spin-button
-  inFlightBinding="controller.inFlight"
-  colorBinding="controller.selectedColor"
-  action="createUser"
-  defaultTimoutBinding="controller.timeout"
-  buttonStyleBinding="controller.selectedAnimation"}}Create User{{/spin-button}}</p>
+  <a class="install-btn" href="https://github.com/ivanvanderbyl/ember-spin-button">Installation Instructions</a>
+
+  {{outlet}}
+</div>

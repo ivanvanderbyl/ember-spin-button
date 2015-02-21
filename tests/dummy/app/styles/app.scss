@@ -1,1 +1,56 @@
 @import "spin-button";
+@import url(http://fonts.googleapis.com/css?family=Roboto:400,300);
+
+body, html {
+  padding: 0;
+  font-family: 'Roboto', sans-serif;
+}
+
+.controls-container {
+  .control-group {
+    margin-bottom: 16px;
+    overflow: hidden;
+
+    label {
+      float: left;
+      width: 180px;
+    }
+
+    select, input[type="range"]{
+      float: left;
+    }
+  }
+}
+
+.container {
+  width: 720px;
+  margin: 0 auto;
+
+  h2 {
+    font-size: 24px;
+  }
+
+  .demo-container {
+    background: darken(white, 12%);
+    padding: 32px;
+    text-align: center;
+    border-radius: 5px;
+
+    p.demo {
+      color: darken(white, 24%);
+      font-size: 2em;
+      line-height: 1em;
+      margin-top: 0;
+    }
+
+    button:focus {
+      outline: none;
+    }
+  }
+
+  .install-btn {
+    margin-top: 32px;
+    text-align: center;
+    display: block;
+  }
+}
