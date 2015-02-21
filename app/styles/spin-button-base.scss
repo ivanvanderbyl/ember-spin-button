@@ -1,0 +1,477 @@
+/*!
+ * spin-button
+ * http://lab.hakim.se/spin-button
+ * MIT licensed
+ *
+ * Copyright (C) 2015 Hakim El Hattab, http://hakim.se
+ */
+
+
+/*************************************
+ * CONFIG
+ */
+
+$spinnerSize: 32px;
+
+
+/*************************************
+ * MIXINS
+ */
+
+@mixin prefix ( $property, $value ) {
+  -webkit-#{$property}: $value;
+     -moz-#{$property}: $value;
+      -ms-#{$property}: $value;
+       -o-#{$property}: $value;
+          #{$property}: $value;
+}
+
+@mixin transition( $value ) {
+  -webkit-transition: $value !important; // important to override bootstrap
+     -moz-transition: $value !important;
+      -ms-transition: $value !important;
+       -o-transition: $value !important;
+          transition: $value !important;
+}
+
+@mixin transform( $value ) {
+  @include prefix( transform, $value );
+}
+
+@mixin transform-origin( $value ) {
+  @include prefix( transform-origin, $value );
+}
+
+@mixin buttonColor( $name, $color ) {
+  &[data-color=#{$name}] {
+    background: $color;
+
+    &:hover {
+      background-color: lighten( $color, 5% );
+    }
+  }
+}
+
+
+/*************************************
+ * BUTTON BASE
+ */
+
+.spin-button {
+  position: relative;
+}
+
+
+/* Spinner animation */
+.spin-button .spin-button-spinner {
+  position: absolute;
+  z-index: 2;
+  display: inline-block;
+  width: $spinnerSize;
+  height: $spinnerSize;
+  top: 50%;
+  margin-top: 0;
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* Button label */
+.spin-button .spin-button-label {
+  position: relative;
+  z-index: 3;
+}
+
+/* Progress bar */
+.spin-button .spin-button-progress {
+  position: absolute;
+  width: 0;
+  height: 100%;
+  left: 0;
+  top: 0;
+  background: rgba( 0, 0, 0, 0.2 );
+
+  visibility: hidden;
+  opacity: 0;
+
+  @include transition( 0.1s linear all );
+}
+
+.spin-button.in-flight .spin-button-progress {
+  opacity: 1;
+  visibility: visible;
+}
+
+
+/*************************************
+ * EASING
+ */
+
+.spin-button,
+.spin-button .spin-button-spinner,
+.spin-button .spin-button-label {
+  @include transition( 0.3s cubic-bezier(0.175, 0.885, 0.320, 1.275) all );
+}
+
+.spin-button[data-style=zoom-in],
+.spin-button[data-style=zoom-in] .spin-button-spinner,
+.spin-button[data-style=zoom-in] .spin-button-label,
+.spin-button[data-style=zoom-out],
+.spin-button[data-style=zoom-out] .spin-button-spinner,
+.spin-button[data-style=zoom-out] .spin-button-label {
+  @include transition( 0.3s ease all );
+}
+
+
+/*************************************
+ * EXPAND LEFT
+ */
+
+.spin-button[data-style=expand-right] {
+  .spin-button-spinner {
+    right: $spinnerSize/-2 + 10;
+  }
+
+  &[data-size="s"] .spin-button-spinner,
+  &[data-size="xs"] .spin-button-spinner {
+    right: $spinnerSize/-2 + 4;
+  }
+
+  &.in-flight {
+    padding-right: 56px;
+
+    .spin-button-spinner {
+      opacity: 1;
+    }
+
+    &[data-size="s"],
+    &[data-size="xs"] {
+      padding-right: 40px;
+    }
+  }
+}
+
+
+/*************************************
+ * EXPAND RIGHT
+ */
+
+.spin-button[data-style=expand-left] {
+  .spin-button-spinner {
+    left: $spinnerSize/2 + 10;
+  }
+
+  &[data-size="s"] .spin-button-spinner,
+  &[data-size="xs"] .spin-button-spinner {
+    left: 4px;
+  }
+
+  &.in-flight {
+    padding-left: 56px;
+
+    .spin-button-spinner {
+      opacity: 1;
+    }
+
+    &[data-size="s"],
+    &[data-size="xs"] {
+      padding-left: 40px;
+    }
+  }
+}
+
+
+/*************************************
+ * EXPAND UP
+ */
+
+.spin-button[data-style=expand-up] {
+  overflow: hidden;
+
+  .spin-button-spinner {
+    top: -$spinnerSize;
+    left: 50%;
+    margin-left: 0;
+  }
+
+  &.in-flight {
+    padding-top: 54px;
+
+    .spin-button-spinner {
+      opacity: 1;
+      top: ($spinnerSize/ 2) + 10;
+      margin-top: 0;
+    }
+
+    &[data-size="s"],
+    &[data-size="xs"] {
+      padding-top: 32px;
+
+      .spin-button-spinner {
+        top: 4px;
+      }
+    }
+  }
+}
+
+
+/*************************************
+ * EXPAND DOWN
+ */
+
+ .spin-button[data-style=expand-down] {
+  overflow: hidden;
+
+  .spin-button-spinner {
+    top: 62px;
+    left: 50%;
+    margin-left: 0;
+  }
+
+  &[data-size="s"] .spin-button-spinner,
+  &[data-size="xs"] .spin-button-spinner {
+    top: 40px;
+  }
+
+  &.in-flight {
+    padding-bottom: 54px;
+
+    .spin-button-spinner {
+      opacity: 1;
+    }
+
+    &[data-size="s"],
+    &[data-size="xs"] {
+      padding-bottom: 32px;
+    }
+  }
+ }
+
+
+/*************************************
+ * SLIDE LEFT
+ */
+.spin-button[data-style=slide-left] {
+  overflow: hidden;
+
+  .spin-button-label {
+    position: relative;
+  }
+  .spin-button-spinner {
+    left: 100%;
+    margin-left: 0;
+  }
+
+  &.in-flight {
+    .spin-button-label {
+      opacity: 0;
+      left: -100%;
+    }
+    .spin-button-spinner {
+      opacity: 1;
+      left: 50%;
+    }
+  }
+}
+
+
+/*************************************
+ * SLIDE RIGHT
+ */
+.spin-button[data-style=slide-right] {
+  overflow: hidden;
+
+  .spin-button-label {
+    position: relative;
+  }
+  .spin-button-spinner {
+    right: 100%;
+    margin-left: 0;
+    left: $spinnerSize/2
+  }
+
+  &.in-flight {
+    .spin-button-label {
+      opacity: 0;
+      left: 100%;
+    }
+    .spin-button-spinner {
+      opacity: 1;
+      left: 50%;
+    }
+  }
+}
+
+
+/*************************************
+ * SLIDE UP
+ */
+.spin-button[data-style=slide-up] {
+  overflow: hidden;
+
+  .spin-button-label {
+    position: relative;
+  }
+  .spin-button-spinner {
+    left: 50%;
+    margin-left: 0;
+    margin-top: 1em;
+  }
+
+  &.in-flight {
+    .spin-button-label {
+      opacity: 0;
+      top: -1em;
+    }
+    .spin-button-spinner {
+      opacity: 1;
+      margin-top: 0;
+    }
+  }
+}
+
+
+/*************************************
+ * SLIDE DOWN
+ */
+.spin-button[data-style=slide-down] {
+  overflow: hidden;
+
+  .spin-button-label {
+    position: relative;
+  }
+  .spin-button-spinner {
+    left: 50%;
+    margin-left: 0;
+    margin-top: -2em;
+  }
+
+  &.in-flight {
+    .spin-button-label {
+      opacity: 0;
+      top: 1em;
+    }
+    .spin-button-spinner {
+      opacity: 1;
+      margin-top: 0;
+    }
+  }
+}
+
+
+/*************************************
+ * ZOOM-OUT
+ */
+
+.spin-button[data-style=zoom-out] {
+  overflow: hidden;
+}
+  .spin-button[data-style=zoom-out] .spin-button-spinner {
+    left: 50%;
+    margin-left: $spinnerSize;
+
+    @include transform( scale( 2.5 ) );
+  }
+  .spin-button[data-style=zoom-out] .spin-button-label {
+    position: relative;
+    display: inline-block;
+  }
+
+.spin-button[data-style=zoom-out].in-flight .spin-button-label {
+  opacity: 0;
+
+  @include transform( scale( 0.5 ) );
+}
+.spin-button[data-style=zoom-out].in-flight .spin-button-spinner {
+  opacity: 1;
+  margin-left: 0;
+
+  @include transform( none );
+}
+
+
+/*************************************
+ * ZOOM-IN
+ */
+
+.spin-button[data-style=zoom-in] {
+  overflow: hidden;
+}
+  .spin-button[data-style=zoom-in] .spin-button-spinner {
+    left: 50%;
+    margin-left: $spinnerSize/-2;
+
+    @include transform( scale( 0.2 ) );
+  }
+  .spin-button[data-style=zoom-in] .spin-button-label {
+    position: relative;
+    display: inline-block;
+  }
+
+.spin-button[data-style=zoom-in].in-flight .spin-button-label {
+  opacity: 0;
+
+  @include transform( scale( 2.2 ) );
+}
+.spin-button[data-style=zoom-in].in-flight .spin-button-spinner {
+  opacity: 1;
+  margin-left: 0;
+
+  @include transform( none );
+}
+
+
+/*************************************
+ * CONTRACT
+ */
+
+.spin-button[data-style=contract] {
+  overflow: hidden;
+  width: 100px;
+}
+  .spin-button[data-style=contract] .spin-button-spinner {
+    left: 50%;
+    margin-left: 0;
+  }
+
+.spin-button[data-style=contract].in-flight {
+  border-radius: 50%;
+  width: 52px;
+}
+  .spin-button[data-style=contract].in-flight .spin-button-label {
+    opacity: 0;
+  }
+  .spin-button[data-style=contract].in-flight .spin-button-spinner {
+    opacity: 1;
+  }
+
+
+
+/*************************************
+ * OVERLAY
+ */
+
+.spin-button[data-style=contract-overlay] {
+  overflow: hidden;
+  width: 100px;
+
+  box-shadow: 0px 0px 0px 2000px rgba(0,0,0,0);
+}
+  .spin-button[data-style=contract-overlay] .spin-button-spinner {
+    left: 50%;
+    margin-left: 0;
+  }
+
+.spin-button[data-style=contract-overlay].in-flight {
+  border-radius: 50%;
+  width: 52px;
+
+  /*outline: 10000px solid rgba( 0, 0, 0, 0.5 );*/
+  box-shadow: 0px 0px 0px 2000px rgba(0,0,0,0.8);
+}
+
+.spin-button[data-style=contract-overlay].in-flight .spin-button-label {
+  opacity: 0;
+}
+.spin-button[data-style=contract-overlay].in-flight .spin-button-spinner {
+  opacity: 1;
+}

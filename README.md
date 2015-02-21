@@ -1,6 +1,29 @@
-# Ember-spin-button
+# ember-spin-button
 
-This README outlines the details of collaborating on this Ember addon.
+Creates a button with a nice spinning to the side. Design based upon [Ladda](http://lab.hakim.se/ladda/), but implemented entirely as an Ember Component.
+
+## Installation
+
+```bash
+npm install ember-spin-button --save
+```
+
+Then import the stylesheet:
+
+```css
+// app.scss
+@import "spin-button";
+```
+
+## Usage
+
+```handlebars
+{{#spin-button action="createUser" inFlightBinding="model.inFlight" buttonStyle="expand-left"}}Create User{{/spin-button}}
+```
+
+The `inFlight` binding should map tightly to a resource you're loading or saving, and the button will automatically change state when this resource is `inFlight`. Alternatively you could bind this to another piece of logic.
+
+The button will automatically disable itself when you click it, after calling the `action`.
 
 ## Installation
 

@@ -1,3 +1,6 @@
-<h2 id="title">Welcome to Ember.js</h2>
+<h2 id="title">Ember CLI Spin Button Addon</h2>
 
 {{outlet}}
+
+<p><label>{{input type="checkbox" checkedBinding="controller.inFlight"}} In Flight</label></p>
+<p>{{#spin-button inFlightBinding="controller.inFlight"}}Create User{{/spin-button}}</p>
