@@ -9,19 +9,7 @@ Creates a button with a nice spinner to the side. Design based upon [Ladda](http
 ## Installation
 
 ```bash
-ember install:npm ember-spin-button
-```
-
-Then install the blueprint:
-
-```bash
-ember g blueprint ember-spin-button
-```
-
-Install other dependencies:
-
-```bash
-ember install
+ember install:addon ember-spin-button
 ```
 
 Then import the stylesheet:
