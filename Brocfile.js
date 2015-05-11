@@ -1,6 +1,7 @@
 /* jshint node: true */
 /* global require, module */
 
+var funnel = require('broccoli-funnel');
 var EmberAddon = require('ember-cli/lib/broccoli/ember-addon');
 
 var app = new EmberAddon();
