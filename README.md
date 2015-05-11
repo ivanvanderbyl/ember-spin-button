@@ -8,6 +8,14 @@ Creates a button with a nice spinner to the side. Design based upon [Ladda](http
 
 ## Installation
 
+For ember-cli >= 0.2.3, run:
+
+```bash
+ember install ember-spin-button
+```
+
+Otherwise, for ember-cli 0.1.5 - 0.2.3, run:
+
 ```bash
 ember install:addon ember-spin-button
 ```
