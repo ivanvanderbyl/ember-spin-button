@@ -13,7 +13,7 @@ module.exports = {
   treeForStyles: function() {
     var stylesheetPath = path.resolve(__dirname, 'addon', 'spin-button');
     var stylesheetsTree = new Funnel(this.treeGenerator(stylesheetPath), {
-      srcDir: '/assets/stylesheets',
+      srcDir: 'styles',
       destDir: '/app/styles'
     });
     return stylesheetsTree;
