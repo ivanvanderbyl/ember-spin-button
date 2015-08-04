@@ -17,7 +17,7 @@
   },
   "author": "",
   "license": "MIT",
-  "depdendencies": {
+  "dependencies": {
     "broccoli-funnel": "^0.2.3"
   },
   "devDependencies": {
