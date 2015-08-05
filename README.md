@@ -4,8 +4,6 @@ Creates a button with a nice spinner to the side. Design based upon [Ladda](http
 
 ![Demo](/screenshots/Ember-Spin-Button-demo.gif?raw=true)
 
-[Interactive Demo](http://ember-spin-button.tomster.io/)
-
 ## Installation
 
 For ember-cli >= 0.2.3, run:
