@@ -47,7 +47,7 @@
   ],
   "dependencies": {
     "ember-cli-babel": "^5.0.0",
-    "ember-cli-sass": "file:../../../../../var/folders/yw/rtb8gk4s165g5hn6xnsf7f4w0000gn/T/npm-55018-4e738323/git-cache-57397159a1c3/6f3c28df779cb7fba92e2a41a29614c30a797378"
+    "ember-cli-sass": "^4.0.1"
   },
   "ember-addon": {
     "configPath": "tests/dummy/config"
