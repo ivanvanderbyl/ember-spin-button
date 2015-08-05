@@ -8,7 +8,14 @@ export default Ember.Controller.extend({
   timeout: 2E3,
 
   actions: {
-    createUser: function() {
+    createWithPromise: function() {
+      console.log('Button Clicked');
+      return new Ember.RSVP.Promise((resolve) => {
+        setTimeout(resolve, this.get('timeout'));
+      });
+    },
+
+    createWithoutPromise() {
       console.log('Button Clicked');
     }
   }

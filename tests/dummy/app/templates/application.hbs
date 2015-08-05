@@ -2,22 +2,47 @@
   <h2 id="title">Ember CLI Spin Button Addon</h2>
 
   <div class="controls-container">
-    <div class="control-group" for="button-color-select"><label>Button Color</label> {{view "select" id="button-color-select" content=buttonColors value=selectedColor}}</div>
-    <div class="control-group"><label for="button-style-select">Animation Style</label> {{view "select" id="button-style-select" content=buttonStyles value=selectedAnimation}}</div>
-    <div class="control-group"><label for="button-timeout-range">Timeout ({{timeout}}ms)</label> {{input id="button-timeout-range" type="range" max="10000" step="250" valueBinding=timeout}}</div>
+    <h3>Button Color</h3>
+    <div class="control-group">
+    {{#each buttonColors as |color|}}
+      <div><label>{{radio-button value=color groupValue=selectedColor}} {{color}}</label></div>
+    {{/each}}
+    </div>
+
+    <h3>Animation style</h3>
+    <div class="control-group">
+    {{#each buttonStyles as |style|}}
+      <div><label>{{radio-button value=style groupValue=selectedAnimation}} {{style}}</label></div>
+    {{/each}}
+    </div>
+
+    <h3>Timeout</h3>
+    <div class="control-group">
+      <label for="button-timeout-range">{{timeout}}ms</label> {{input id="button-timeout-range" type="range" max="60000" step="500" value=timeout}}
+    </div>
   </div>
 
-  <p><label>{{input type="checkbox" checkedBinding="controller.inFlight"}} In-Flight</label></p>
+  <p><label>{{input type="checkbox" checked=inFlight}} In-Flight</label></p>
 
   <div class="demo-container">
-    <p class="demo">Demo</p>
+    <p class="demo">Demo (With Promises)</p>
     {{#spin-button
-      inFlightBinding="controller.inFlight"
-      colorBinding="controller.selectedColor"
-      action="createUser"
-      defaultTimoutBinding="controller.timeout"
-      buttonStyleBinding="controller.selectedAnimation"}}Do Something Expensive{{/spin-button}}
+      color=selectedColor
+      action=(action "createWithPromise")
+      defaultTimout=timeout
+      buttonStyle=selectedAnimation}}Do Something Expensive{{/spin-button}}
   </div>
+
+  <div class="demo-container">
+    <p class="demo">Demo (Without Promises)</p>
+    {{#spin-button
+      color=selectedColor
+      inFlight=inFlight
+      action=(action "createWithoutPromise")
+      defaultTimout=timeout
+      buttonStyle=selectedAnimation}}Do Something Expensive{{/spin-button}}
+  </div>
+
 
   <a class="install-btn" href="https://github.com/ivanvanderbyl/ember-spin-button">Installation Instructions</a>
 

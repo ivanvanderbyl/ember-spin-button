@@ -8,11 +8,11 @@
  * CONFIG
  */
 
-$green: #2aca76;
-$blue: #53b5e6;
-$red: #ea8557;
-$purple: #9973C2;
-$mint: #16a085;
+$spin-button-green: #2aca76;
+$spin-button-blue: #53b5e6;
+$spin-button-red: #ea8557;
+$spin-button-purple: #9973C2;
+$spin-button-mint: #16a085;
 
 
 /*************************************
@@ -39,11 +39,11 @@ $mint: #16a085;
     background-color: #888;
   }
 
-  @include buttonColor( 'green', $green );
-  @include buttonColor( 'blue', $blue );
-  @include buttonColor( 'red', $red );
-  @include buttonColor( 'purple', $purple );
-  @include buttonColor( 'mint', $mint );
+  @include buttonColor( 'green', $spin-button-green );
+  @include buttonColor( 'blue', $spin-button-blue );
+  @include buttonColor( 'red', $spin-button-red );
+  @include buttonColor( 'purple', $spin-button-purple );
+  @include buttonColor( 'mint', $spin-button-mint );
 
   &[disabled],
   &.in-flight {

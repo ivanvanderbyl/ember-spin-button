@@ -6,34 +6,46 @@ Creates a button with a nice spinner to the side. Design based upon [Ladda](http
 
 ## Installation
 
-For ember-cli >= 0.2.3, run:
-
 ```bash
 ember install ember-spin-button
-```
-
-Otherwise, for ember-cli 0.1.5 - 0.2.3, run:
-
-```bash
-ember install:addon ember-spin-button
-```
-
-Then import the stylesheet:
-
-```css
-/* app.scss */
-@import "spin-button";
 ```
 
 ## Usage
 
 ```handlebars
-{{#spin-button action="createUser" inFlightBinding="model.inFlight" buttonStyle="expand-left"}}Create User{{/spin-button}}
+{{#spin-button 
+    action=(action "createUser")
+    buttonStyle="expand-right"}}Create User{{/spin-button}}
 ```
 
-The `inFlight` binding should map tightly to a resource you're loading or saving, and the button will automatically change state when this resource is `inFlight`. Alternatively you could bind this to another piece of logic.
+You can manually bind something to indicate the busy state to `inFlight`, or simply return a promise from your action handler (Ember 1.13+) and the button will indicate a busy state while the promise is resolving.
 
 The button will automatically disable itself when you click it, after calling the `action`.
+
+### Example Closure Action returning a promise:
+
+**Requires Ember 1.13**
+
+In Ember 1.13+, action handlers can have return values. If you return a promise in your action handler, `ember-spin-button` will automatically use the state of the promise to indicate progress.
+
+```js
+// some-controller.js
+import Ember from 'ember';
+
+export default Ember.Controller.extend({
+  actions: {
+    saveRecord: function() {
+      // Save returns a Promise from Ember Data which resolves when the model is saved.
+      return this.get('model').save();
+    },
+  }
+});
+```
+
+```handlebars
+<!-- my-template.hbs -->
+{{#spin-button action=(action "saveRecord")}}Save Changes{{/spin-button}}
+```
 
 ## Configuration
 
@@ -42,6 +54,12 @@ The button will automatically disable itself when you click it, after calling th
 A delay before showing the animation, but after disabling the button.
 
 **Default**: `150ms`. _Any value <4ms will disable this feature._
+
+### `inFlight` (deprecated)
+
+Binds the busy state of the button.
+
+**Default**: `false`.
 
 ### `defaultTimout`
 
