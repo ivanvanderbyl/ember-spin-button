@@ -1,4 +1,5 @@
 import Ember from 'ember';
+/* global Spinner */
 
 function createSpinner( button ) {
   var height = button.offsetHeight,
@@ -64,8 +65,18 @@ export default Ember.Component.extend({
   _timer: null,
 
   click: function() {
-    this.set('inFlight', !this.get('inFlight'));
-    this.sendAction('action');
+    this.set('inFlight', true);
+
+    if (this.attrs && 'function' === typeof this.attrs.action) {
+      let actionResult = this.attrs.action();
+
+      if (Ember.isPresent(actionResult) &&
+          ('function' === typeof actionResult.finally)) {
+        actionResult.finally(() => { this.set('inFlight', false); });
+      }
+    }else{
+      this.sendAction('action');
+    }
   },
 
   inFlightDidChange: function() {
