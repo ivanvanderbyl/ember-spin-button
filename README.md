@@ -13,7 +13,9 @@ ember install ember-spin-button
 ## Usage
 
 ```handlebars
-{{#spin-button action=(action "createUser") buttonStyle="expand-left"}}Create User{{/spin-button}}
+{{#spin-button 
+    action=(action "createUser")
+    buttonStyle="expand-right"}}Create User{{/spin-button}}
 ```
 
 You can manually bind something to indicate the busy state to `inFlight`, or simply return a promise from your action handler (Ember 1.13+) and the button will indicate a busy state while the promise is resolving.
@@ -42,7 +44,7 @@ export default Ember.Controller.extend({
 
 ```handlebars
 <!-- my-template.hbs -->
-{{#spin-button action=(action "saveRecord") buttonStyle="expand-left"}}Save Changes{{/spin-button}}
+{{#spin-button action=(action "saveRecord")}}Save Changes{{/spin-button}}
 ```
 
 ## Configuration
