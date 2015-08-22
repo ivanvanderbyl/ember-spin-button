@@ -89,7 +89,7 @@ export default Ember.Component.extend({
       this.setDisabled();
 
       if (this.get('startDelay') > 4) {
-        Ember.run.later(this.createSpinner.bind(this, element), this.get('startDelay'));
+        Ember.run.later(this, this.createSpinner, element, this.get('startDelay'));
       }else{
         this.createSpinner(element);
       }
@@ -104,12 +104,10 @@ export default Ember.Component.extend({
       this._spinner.spin(element.querySelector('.spin-button-spinner'));
     }
 
-    clearTimeout(this._timer);
+    if(this._timer) { Ember.run.cancel(this._timer); }
     var timeout = this.get('defaultTimout');
     if (timeout > 4) {
-      this._timer = setTimeout(function() {
-        this.setEnabled();
-      }.bind(this), timeout);
+      this._timer = Ember.run.later(this, this.setEnabled, timeout);
     }
   },
 
@@ -118,16 +116,17 @@ export default Ember.Component.extend({
   },
 
   setEnabled: function(){
-    clearTimeout(this._timer);
-
+    if(this._timer) { Ember.run.cancel(this._timer); }
     if (this._spinner) {
       this._spinner.stop();
       this._spinner = null;
     }
 
-    this.setProperties({
-      disabled: false,
-      inFlight: false,
-    });
+    if (!this.get('isDestroyed')) {
+      this.setProperties({
+        disabled: false,
+        inFlight: false,
+      });
+    }
   },
 });

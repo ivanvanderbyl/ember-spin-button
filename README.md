@@ -10,6 +10,13 @@ Creates a button with a nice spinner to the side. Design based upon [Ladda](http
 ember install ember-spin-button
 ```
 
+Add the stylesheet include if it wasn't added automatically during insallation:
+
+```css
+// app/styles/app.scss
+@import "spin-button";
+```
+
 ## Usage
 
 ```handlebars
