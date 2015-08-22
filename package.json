@@ -1,6 +1,6 @@
 {
   "name": "ember-spin-button",
-  "version": "0.2.2",
+  "version": "0.2.3",
   "description": "Creates a button with a nice spinner to the side when you press it.",
   "directories": {
     "doc": "doc",
