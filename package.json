@@ -46,8 +46,9 @@
     "ladda"
   ],
   "dependencies": {
+    "broccoli-funnel": "*",
     "ember-cli-babel": "^5.0.0",
-    "ember-cli-sass": "^4.0.1"
+    "ember-cli-sass": "^4.1.0"
   },
   "ember-addon": {
     "configPath": "tests/dummy/config"
