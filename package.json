@@ -1,7 +1,7 @@
 {
   "name": "ember-spin-button",
   "version": "0.2.2",
-  "description": "The default blueprint for ember-cli addons.",
+  "description": "Creates a button with a nice spinner to the side when you press it.",
   "directories": {
     "doc": "doc",
     "test": "tests"
@@ -15,11 +15,11 @@
   "engines": {
     "node": ">= 0.10.0"
   },
-  "author": "",
+  "author": "Ivan Vanderbyl",
   "license": "MIT",
   "devDependencies": {
     "broccoli-asset-rev": "^2.0.2",
-    "ember-cli": "1.13.6",
+    "ember-cli": "^1.13.6",
     "ember-cli-app-version": "0.4.0",
     "ember-cli-content-security-policy": "0.4.0",
     "ember-cli-dependency-checker": "^1.0.0",
@@ -32,11 +32,11 @@
     "ember-cli-sass": "4.0.1",
     "ember-cli-sri": "^1.0.1",
     "ember-cli-uglify": "^1.0.1",
-    "ember-data": "1.13.7",
+    "ember-data": "^1.13.7",
     "ember-disable-proxy-controllers": "^1.0.0",
     "ember-export-application-global": "^1.0.3",
-    "ember-radio-button": "1.0.7",
-    "ember-try": "0.0.6"
+    "ember-radio-button": "^1.0.7",
+    "ember-try": "^0.0.6"
   },
   "keywords": [
     "ember-addon",
@@ -46,7 +46,7 @@
     "ladda"
   ],
   "dependencies": {
-    "broccoli-funnel": "*",
+    "broccoli-funnel": "^0.2.8",
     "ember-cli-babel": "^5.0.0",
     "ember-cli-sass": "^4.1.0"
   },
