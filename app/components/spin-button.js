@@ -64,7 +64,8 @@ export default Ember.Component.extend({
 
   _timer: null,
 
-  click: function() {
+  click: function(event) {
+    event.preventDefault();
     this.set('inFlight', true);
 
     if (this.attrs && 'function' === typeof this.attrs.action) {
