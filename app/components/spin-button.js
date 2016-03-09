@@ -87,8 +87,6 @@ export default Ember.Component.extend({
     var inFlight = this.get('inFlight');
 
     if (inFlight) {
-      this.setDisabled();
-
       if (this.get('startDelay') > 4) {
         Ember.run.later(this, this.createSpinner, element, this.get('startDelay'));
       }else{
@@ -112,9 +110,7 @@ export default Ember.Component.extend({
     }
   },
 
-  setDisabled: function(){
-    this.set('disabled', true);
-  },
+  disabled: Ember.computed.readOnly("inFlight"),
 
   setEnabled: function(){
     if(this._timer) { Ember.run.cancel(this._timer); }
@@ -125,7 +121,6 @@ export default Ember.Component.extend({
 
     if (!this.get('isDestroyed')) {
       this.setProperties({
-        disabled: false,
         inFlight: false,
       });
     }
