@@ -1,25 +1,17 @@
 /* jshint node: true */
 'use strict';
 
-var path = require('path');
-var Funnel = require('broccoli-funnel');
-
 module.exports = {
   name: 'ember-spin-button',
 
-  included: function(app) {
-    this._super.included(app);
-
-    app.import(app.bowerDirectory + '/spin.js/spin.js');
-  },
-
-  treeForStyles: function() {
-    var stylesPath = path.join(__dirname, 'addon');
-    var stylesTree = new Funnel(this.treeGenerator(stylesPath), {
-      srcDir: './styles',
-      destDir: '/app/styles'
+  included(app) {
+    this._super.included && this._super.included.apply(this, arguments);
+    this.import(app.bowerDirectory + '/spin.js/spin.js');
+    this.import('vendor/spinner.js', {
+      exports: {
+        spinner: ['default'],
+      },
     });
-    return stylesTree;
-  }
 
+  },
 };
