@@ -1,6 +1,6 @@
 {
   "name": "ember-spin-button",
-  "version": "0.2.3",
+  "version": "0.2.4",
   "description": "A button with a spinner when pressed",
   "directories": {
     "doc": "doc",
