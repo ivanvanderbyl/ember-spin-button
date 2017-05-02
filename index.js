@@ -6,12 +6,14 @@ module.exports = {
 
   included(app) {
     this._super.included && this._super.included.apply(this, arguments);
-    this.import(app.bowerDirectory + '/spin.js/spin.js');
-    this.import('vendor/spinner.js', {
-      exports: {
-        spinner: ['default'],
-      },
-    });
-
+ 
+    if (!process.env.EMBER_CLI_FASTBOOT) {
+      this.import(app.bowerDirectory + '/spin.js/spin.js');
+      this.import('vendor/spinner.js', {
+        exports: {
+          spinner: ['default'],
+        },
+      });
+    }
   },
 };
